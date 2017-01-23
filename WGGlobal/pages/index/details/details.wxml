@@ -1,0 +1,80 @@
+<!--pages/index/details/details.wxml-->
+<import src='../../../common/template.wxml' />
+<view class="wrapper">
+    <view class="info-wrapper">
+        <image mode='aspectFill' src='{{ info.head || "http://wx.wg-global.com/Public/images/head.png" }}' />
+        <view class="lines">
+            <text class="nickname">{{ info.name }}</text>
+            <template is='stars' data='{{ stars: info.stars, nums: info.nums }}' />
+            <text class="info-text">从业年限：{{ info.year }} 年</text>
+            <text class="info-text">最擅长：{{ info.countrys }}</text>
+            <text class="info-text">从属公司：{{ info.s_title }}</text>
+        </view>
+        <view class='likes {{ info.is_collects == 1 ? "do-like" : "dont-like" }}' bindtap='bindLikeTap'>{{ wholeInfo.good_num }}</view>
+    </view>
+    <!-- tablayout -->
+    <view class="tablayout">
+        <view class='{{ tabIndex == 0 ? "selected-tab" : "" }}' bindtap='bindTabTap' data-index='0'>详情</view>
+        <view class='{{ tabIndex == 1 ? "selected-tab" : "" }}' bindtap='bindTabTap' data-index='1'>评价</view>
+    </view>
+    <!-- 详情pager -->
+    <view class="info-block-wrapper" hidden='{{ tabIndex != 0 }}'>
+        <view class="info-block">
+            <view class="info-block-line">
+                <text>信用值</text>
+                <text>{{ wholeInfo.credit }}</text>
+            </view>
+            <view class="info-block-line">
+                <text>服务范围</text>
+                <text>{{ wholeInfo.type }}</text>
+            </view>
+            <view class="info-block-line">
+                <text>服务区域</text>
+                <text>{{ wholeInfo.main_countries }}</text>
+            </view>
+        </view>
+        <view class="info-block">
+            <view class="info-block-line">
+                <text>收到的需求</text>
+                <text>{{ wholeInfo.count1 }}(份)</text>
+            </view>
+            <view class="info-block-line">
+                <text>发送的方案</text>
+                <text>{{ wholeInfo.count2 }}(份)</text>
+            </view>
+            <view class="info-block-line">
+                <text>进行中的方案</text>
+                <text>{{ wholeInfo.count3 }}(份)</text>
+            </view>
+            <view class="info-block-line">
+                <text>已完成的方案</text>
+                <text>{{ wholeInfo.count4 }}(份)</text>
+            </view>
+        </view>
+        <text class='short-title'>个人简介</text>
+        <view class="info-block">
+            {{ wholeInfo.introduce || "暂无" }}
+        </view>
+    </view>
+    <!-- 评价pager -->
+    <view class="comment-block-wrapper" hidden='{{ tabIndex != 1 }}'>
+        <button type='primary' bindtap='bindAddCommentTap'>我要评价</button>
+        <text class='empty-tip' wx:if='{{ comments.comment.length == 0 }}'>暂时没有评论</text>
+        <view class="comments-wrapper">
+            <view class='comments-item' wx:for='{{ comments.comment }}' wx:key='comment' wx:for-item='item'>
+                <view class='comments-item-top-info'>
+                    <image src='{{ item.img }}' />
+                    <view>
+                        <text class='comment-name'>{{ item.username }}</text>
+                        <view class="stars-wrapper">
+                            <text wx:for='{{ [1, 2, 3, 4, 5] }}' wx:key='star' wx:for-item='num' class='{{ num <= item.star/20 ? "star-full" : "star-empty" }}'> ★ </text>
+                        </view>
+                    </view>
+                    <text class='timestap'>{{ item.tm }}</text>
+                </view>
+                <text class='comment-content'>{{ item.con }}</text>
+            </view>
+        </view>
+    </view>
+
+</view>

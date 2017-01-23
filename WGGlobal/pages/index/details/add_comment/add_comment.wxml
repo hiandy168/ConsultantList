@@ -1,0 +1,20 @@
+<!--pages/index/details/add_comment/add_comment.wxml-->
+<view class="wrapper">
+	<view class="info-wrapper">
+		<text>顾问</text>
+		<text>{{ info.name }}</text>
+	</view>
+
+	<view class="info-wrapper">
+		<text>评分</text>
+		<view class='stars-wrapper'>
+			<text class='{{ state ? "star-full" : "star-empty" }}' wx:key='star' wx:for='{{ starsSelected }}' wx:for-item='state' data-index='{{ index }}' bindtap='bindStarTap'>★ </text>
+		</view>
+	</view>
+	<text style='display: block; padding: 10px'>内容</text>
+	<view class="content-wrapper">
+		<textarea maxlength='50' bindinput='bindContentInout'></textarea>
+		<text style='color: #CCC'>{{ textCount }}</text>
+	</view>
+	<text class='submit-text' bindtap='bindSubmitTap'>提交</text>
+</view>

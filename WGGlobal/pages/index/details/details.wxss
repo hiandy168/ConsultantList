@@ -1,0 +1,200 @@
+/* pages/index/details/details.wxss */
+
+@import '../../../common/common.wxss';
+page {
+    background-color: #F1F2F4;
+}
+
+.contaner {
+    display: flex;
+    align-items: flex-start;
+}
+
+.info-wrapper {
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    background-color: #FFF;
+}
+
+.info-wrapper>image {
+    width: 200rpx;
+    height: 200rpx;
+}
+
+.lines {
+    margin-left: 8px;
+    display: flex;
+    flex-direction: column;
+    font-size: 32rpx;
+}
+
+.info-text {
+    color: #666;
+    font-size: 24rpx;
+    margin-top: 12rpx;
+}
+
+.likes {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    border: 1px solid #A2A2A2;
+    border-radius: 2px;
+    font-size: 24rpx;
+    color: #A2A2A2;
+    padding: 4px;
+}
+
+.likes:before {
+    content: '';
+    width: 18px;
+    height: 18px;
+    background-position: 0 0;
+    background-repeat: no-repeat;
+    margin-right: 4px;
+}
+
+.do-like {
+    color: #34B3CE;
+    border-color: #34B3CE;
+}
+
+.do-like:before {
+    background-image: url(http://wx.wg-global.com/Public/images/gwlbzh_icon.png);
+    background-size: 18px;
+}
+
+.dont-like:before {
+    background-image: url(http://wx.wg-global.com/Public/images/gwlbzq_icon.png);
+    background-size: 18px;
+}
+
+
+/* tablayout */
+
+.tablayout {
+    display: flex;
+    flex-direction: row;
+    border-bottom: 1px solid #EEE;
+    background-color: #FFF;
+}
+
+.tablayout>view {
+    width: 100%;
+    text-align: center;
+    padding: 5px;
+    font-size: 28rpx;
+}
+
+.tablayout>.selected-tab {
+    color: #34B3CE;
+    border-bottom: 4px solid #34B3CE;
+}
+
+
+/* info-block */
+
+.info-block {
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid #EEE;
+    background-color: #FFF;
+    font-size: 24rpx;
+    color: #3D3D3D;
+    line-height: 20px;
+}
+
+.info-block-line {
+    display: flex;
+    flex-direction: row;
+    font-size: 24rpx;
+}
+
+.info-block-line:not(:last-child) {
+    margin-bottom: 10px;
+}
+
+.info-block-line>text:first-child {
+    min-width: 100px;
+    color: #686868;
+}
+
+.info-block-line>text:nth-child(2) {
+    width: 100%;
+    text-align: right;
+}
+
+.short-title {
+    font-size: 28rpx;
+    margin-left: 20px;
+    color: #858587;
+}
+
+
+/**** ****/
+
+button[type=primary] {
+    background-color: #31B5D3;
+    margin: 10px;
+    font-size: 28rpx;
+}
+
+.button-hover[type=primary] {
+    background-color: #1CA5C6;
+}
+
+.empty-tip {
+    font-size: 28rpx;
+    display: block;
+    width: 100%;
+    text-align: center;
+    color: #CBCBCB;
+    font-size: 24rpx;
+}
+
+.comments-wrapper {
+    display: flex;
+    flex-direction: column;
+    background-color: #FFF;
+}
+
+.comments-item {
+    padding: 10px;
+    position: relative;
+}
+
+.comment-name {
+    font-size: 28rpx;
+}
+
+.comments-item image {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.comments-item .timestap {
+    position: absolute;
+    right: 5px;
+}
+
+.comment-content,
+.timestap {
+    font-size: 24rpx;
+    color: #999;
+}
+
+.comments-item-top-info {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+}
+
+.comments-item-top-info>view {
+    margin-left: 10px;
+}

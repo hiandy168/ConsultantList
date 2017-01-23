@@ -1,0 +1,15 @@
+/* stars wrapper */
+.stars-wrapper{
+	padding: 0;
+}
+
+.stars-wrapper>text{
+  font-size: 22rpx;
+}
+
+.star-full{
+  color: #FFCB00;
+}
+.star-empty{
+  color: #CBCBCB;
+}

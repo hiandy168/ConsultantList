@@ -1,0 +1,82 @@
+<!--index.wxml-->
+<import src='../../common/template.wxml' />
+<view class="wrapper" >
+    <!-- 顶部选项 -->
+    <view class="top-filter">
+        <view class="filter-item" bindtap='bindOrderTap' style='color:{{ orders[0].color }}' data-index='0'>
+            好评
+            <view class='filter-order {{ orders[0].clzName }}'>
+                <view></view>
+                <view></view>
+            </view>
+        </view>
+        <view class="filter-item" bindtap='bindOrderTap' style='color:{{ orders[1].color }}' data-index='1'>
+            方案数量
+            <view class='filter-order {{ orders[1].clzName }}'>
+                <view></view>
+                <view></view>
+            </view>
+        </view>
+        <view class="filter-item" bindtap='bindOrderTap' style='color:{{ orders[2].color }}' data-index='2'>
+            从业年限
+            <view class='filter-order {{ orders[2].clzName }}'>
+                <view></view>
+                <view></view>
+            </view>
+        </view>
+        <view class="filter-item" bindtap='bindSearch'>搜索</view>
+    </view>
+    <!-- 遮罩层 -->
+    <view class="cover" animation='{{ coverAlphaAnim }}' hidden='{{ !isSearchVisible }}' bindtap='bindCoverTap'></view>
+    <!-- 搜索框以及下面的已搜索选项 -->
+    <view class="search-wrapper" hidden='{{ !isSearchVisible }}'>
+        <view class="search-bar">
+            <input type='text' placeholder='您可以在此输入顾问名或机构名' bindinput='bintSearchInput' />
+            <view class="filter-tag-wrapper">
+                <text class='filter-tag' bindtap='bindTagTap' data-index='{{ index }}' data-pindex='{{ map[0] }}' data-cindex='{{ map[1] }}' wx:key='tag' wx:for='{{ filterMap }}' wx:for-item='map'>{{ selections[map[0]].sub[map[1]].name }}</text>
+            </view>
+        </view>
+        <!-- 过滤选项 -->
+        <view class="filter-selections-wrapper">
+            <view class="filter-list-wrapper">
+                <!-- list -->
+                <view class="filter-list">
+                    <text class='{{ currentCatIndex == index ? "selected" : "" }}' wx:key='selName' wx:for='{{ selections }}' wx:for-item='sel' bindtap='bindCatTap' data-index='{{ index }}'>{{ sel.name }}</text>
+                </view>
+                <scroll-view class='filter-scroll-view' scroll-y='true'>
+                    <view class='filter-scroll-text {{ !subSel.isSelected ? "" : "sub-selected" }}' wx:key='subName' wx:for='{{ selections[currentCatIndex < 0 ? 0 : currentCatIndex].sub }}' wx:for-item='subSel' bindtap='bindSubCatTap' data-index='{{ index }}'>{{ subSel.name }}</view>
+                </scroll-view>
+            </view>
+            <view class="filter-btns-wrapper">
+                <button class="search-reset" size='default' bindtap='bindResetTap'>重置</button>
+                <button class="search-submit" size='default' type="primary" bindtap='bindDoSearchTap'>搜索</button>
+            </view>
+        </view>
+    </view>
+    <!-- 顾问列表 -->
+    <view class="consultant-container">
+        <view hover hover-class='consulatnt-item-hover' class='consulatnt-item {{ index == 0 ? "isnew" : "" }} {{ item.hot && item.hot > 0 ? "suggest" : "" }}' wx:for="{{ list }}" wx:key='consultant' wx:for-item="item" data-dt='{{ item.create_tm }}'>
+            <view class="info-wrapper" bindtap='bindItem' data-index='{{ index }}'>
+                <image mode='aspectFill' src='{{ item.head || "http://wx.wg-global.com/Public/images/head.png" }}' />
+                <view class="lines">
+                    <text class="nickname">{{ item.name }}</text>
+                    <template is='stars' data='{{ stars: item.stars, nums: item.nums }}' />
+                    <text class="info-text">从业年限：{{ item.year }} 年</text>
+                    <text class="info-text">最擅长：{{ item.countrys }}</text>
+                    <text class="info-text">从属公司：{{ item.s_title }}</text>
+                </view>
+            </view>
+            <view class="ctrls">
+                <!-- <text class="ctrls-btn">在线咨询</text> -->
+                <text class='{{ item.is_collects == 1 ? "like" : "not-like" }}' bindtap='bindLike' data-index='{{ index }}'>{{ item.good_num }}</text>
+                <text class='{{ item.my_collects == 1 ? "fav" : "not-fav" }}' bindtap='bindFav' data-index='{{ index }}'>{{ item.my_collects == 1 ? "已收藏" : "收藏" }}</text>
+            </view>
+        </view>
+        <text class='footer' hidden='{{ !showLoadingView }}'> {{ footerText }} </text>
+    </view>
+    <!-- consultant -->
+    <!--  <view class='moved-block' animation='{{ fabAnimation }}' bindtouchstart='bindTouchStart' bindtouchmove='bindTouchmove' bindtouchend='bindTouchend' bindtouchcancel='bindTouchcancel'>
+        我是顾问
+    </view> -->
+    
+</view>

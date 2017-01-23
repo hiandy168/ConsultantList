@@ -1,0 +1,7 @@
+<template name="stars">
+	<view class="stars-wrapper">
+	    <text wx:for='{{ [1, 2, 3, 4, 5] }}' wx:key='star' wx:for-item='num' class='{{ num <= stars ? "star-full" : "star-empty" }}'> ★ </text>
+	    <text>{{ stars }} </text>
+	    <text>({{ nums }}条)</text>
+	</view>
+</template>
